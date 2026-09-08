@@ -180,8 +180,6 @@ class AstraAudio {
     constructor() {
         this.ctx = null;
     }
-}
-const JarvisAudio = AstraAudio;
 
     init() {
         if (!this.ctx) {
@@ -266,6 +264,7 @@ const JarvisAudio = AstraAudio;
         } catch {}
     }
 }
+const JarvisAudio = AstraAudio;
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // ANTARIKSH ASTRA PROTOCOL CLASS

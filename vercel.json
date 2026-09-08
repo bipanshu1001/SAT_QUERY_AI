@@ -1,4 +1,11 @@
 {
+  "buildCommand": "echo 'Deploying Antariksh Astra'",
   "outputDirectory": "bipanshu_work/jarvis-god-eye",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
