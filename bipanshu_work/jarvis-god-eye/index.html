@@ -197,11 +197,12 @@
         </div>
 
         <!-- BOTTOM PANEL — FAVORITES -->
-        <div id="bottom-panel">
-            <div class="panel-header-bar">
-                <span class="material-symbols-outlined" style="font-size:14px;color:rgba(255,215,0,0.4)">star</span>
+        <div id="bottom-panel" class="collapsed">
+            <div class="panel-header-bar" id="fav-header-bar" title="Click to expand / collapse saved targets">
+                <span class="material-symbols-outlined" style="font-size:14px;color:rgba(255,215,0,0.6)">star</span>
                 SAVED TARGETS
                 <span class="fav-count" id="fav-count">0</span>
+                <span class="material-symbols-outlined fav-chevron" id="fav-chevron">expand_more</span>
             </div>
             <div id="favorites-container">
                 <div class="no-favorites">No saved targets — search a location and click ☆</div>

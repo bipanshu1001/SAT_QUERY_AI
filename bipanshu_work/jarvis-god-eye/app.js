@@ -324,6 +324,7 @@ class AntarikshAstra {
         this.initSensorModes();
         this.initSatStatusBar();
         this.initVoice();
+        this.initFavoritesToggle();
         this.renderFavorites();
         this.startClocks();
         this.setupResize();
@@ -387,6 +388,7 @@ class AntarikshAstra {
 
             // Favorites bottom panel
             bottom_panel: 'bottom-panel',
+            fav_header_bar: 'fav-header-bar',
             fav_count: 'fav-count',
             favorites_container: 'favorites-container',
 
@@ -1518,9 +1520,21 @@ class AntarikshAstra {
                 this.dom.fav_btn.textContent = '★';
                 this.dom.fav_btn.classList.add('active');
             }
+            if (this.dom.bottom_panel) {
+                this.dom.bottom_panel.classList.remove('collapsed');
+            }
         }
         this.saveFavorites();
         this.renderFavorites();
+    }
+
+    initFavoritesToggle() {
+        if (this.dom.fav_header_bar && this.dom.bottom_panel) {
+            this.dom.fav_header_bar.addEventListener('click', () => {
+                this.audio.playBeep(820, 0.04);
+                this.dom.bottom_panel.classList.toggle('collapsed');
+            });
+        }
     }
 
     updateFavButtonState() {

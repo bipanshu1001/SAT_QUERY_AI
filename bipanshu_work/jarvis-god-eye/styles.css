@@ -469,10 +469,19 @@ html, body {
    ═══════════════════════════════════════ */
 #right-panel {
     position: fixed; top: 80px; right: 16px; width: 270px; z-index: 15;
-    max-height: calc(100vh - 160px); overflow-y: auto;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 2px;
     opacity: 0; transform: translateX(30px);
     transition: opacity 0.8s ease 0.5s, transform 0.8s ease 0.5s;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 212, 255, 0.25) transparent;
 }
+#right-panel::-webkit-scrollbar { width: 4px; }
+#right-panel::-webkit-scrollbar-track { background: transparent; }
+#right-panel::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.25); border-radius: 4px; }
+#right-panel::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 #hud.visible #right-panel { opacity: 1; transform: translateX(0); }
 
 /* ── WEATHER ── */
@@ -591,7 +600,7 @@ html, body {
 .intel-right-edge { right: 4px; top: 50%; transform: translateY(-50%); }
 
 .intel-summary-bar {
-    position: absolute; bottom: 110px; left: 50%;
+    position: absolute; bottom: 145px; left: 50%;
     transform: translateX(-50%);
     font-size: 10px; letter-spacing: 1px; opacity: 0.4;
     text-align: center; max-width: 60%;
@@ -631,17 +640,23 @@ html, body {
    BOTTOM PANEL — FAVORITES
    ═══════════════════════════════════════ */
 #bottom-panel {
-    position: fixed; bottom: 36px; left: 16px; right: 16px;
+    position: fixed;
+    bottom: 38px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: min(620px, calc(100vw - 580px));
+    max-width: 620px;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--panel-radius);
     backdrop-filter: blur(24px) saturate(1.4);
-    z-index: 15;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-    opacity: 0; transform: translateY(20px);
-    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s;
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    z-index: 20;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.7s, transform 0.8s ease 0.7s, box-shadow var(--transition-fast);
 }
-#hud.visible #bottom-panel { opacity: 1; transform: translateY(0); }
+#hud.visible #bottom-panel { opacity: 1; transform: translateX(-50%) translateY(0); }
 
 .panel-header-bar {
     display: flex; align-items: center; gap: 8px;
@@ -649,6 +664,13 @@ html, body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     font-family: var(--font-mono); font-size: 9px; font-weight: 500;
     letter-spacing: 2.5px; color: var(--text-dim);
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.panel-header-bar:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
 }
 .fav-count {
     margin-left: auto;
@@ -657,11 +679,29 @@ html, body {
     border-radius: 10px; padding: 2px 10px;
     font-family: var(--font-mono); font-size: 10px; color: var(--accent);
 }
+.fav-chevron {
+    font-size: 16px; color: var(--text-dim);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-left: 2px;
+}
+#bottom-panel.collapsed .fav-chevron {
+    transform: rotate(180deg);
+}
+#bottom-panel.collapsed #favorites-container {
+    display: none;
+}
+#bottom-panel.collapsed .panel-header-bar {
+    border-bottom: none;
+}
 
 #favorites-container {
     display: flex; gap: 10px; padding: 10px 16px;
     overflow-x: auto; min-height: 55px; align-items: center;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 212, 255, 0.2) transparent;
 }
+#favorites-container::-webkit-scrollbar { height: 4px; }
+#favorites-container::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.2); border-radius: 4px; }
 .no-favorites {
     width: 100%; text-align: center;
     font-family: var(--font-mono); font-size: 10px;
@@ -872,14 +912,25 @@ html, body {
 /* ═══════════════════════════════════════
    RESPONSIVE
    ═══════════════════════════════════════ */
-@media (max-width: 1200px) { #left-panel { width: 220px; } #right-panel { width: 240px; } .radar { width: 140px; height: 140px; } }
+@media (max-width: 1200px) {
+    #left-panel { width: 220px; }
+    #right-panel { width: 240px; }
+    .radar { width: 140px; height: 140px; }
+    #bottom-panel { width: min(480px, calc(100vw - 490px)); }
+}
 @media (max-width: 900px) {
     #left-panel { display: none; }
     #right-panel { width: 220px; }
     .header-left .logo-subtitle { display: none; }
     .uplink-status { display: none; }
     #sat-status-bar { display: none; }
-    #bottom-panel { bottom: 8px; }
+    #bottom-panel {
+        left: 16px; right: 16px; width: calc(100% - 256px);
+        max-width: none;
+        transform: translateY(20px);
+        bottom: 12px;
+    }
+    #hud.visible #bottom-panel { transform: translateY(0); }
     #intel-hud .intel-top-left, #intel-hud .intel-bottom-left { display: none; }
     #sensor-bar { display: none; }
 }
@@ -892,7 +943,7 @@ html, body {
     .header-right { min-width: auto; }
     #system-status-text { display: none; }
     #right-panel { display: none; }
-    #bottom-panel { left: 8px; right: 8px; }
+    #bottom-panel { left: 8px; right: 8px; width: calc(100% - 16px); bottom: 8px; }
     .fav-card { width: 130px; }
 }
 
