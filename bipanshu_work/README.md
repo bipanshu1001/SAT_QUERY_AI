@@ -1,6 +1,6 @@
-# Bipanshu's Work Package (Sat-Query AI)
+# Work Package (Sat-Query AI)
 
-This directory contains the benchmarking, dataset adapters, DOFA VLM models, and the Jarvis God-Eye UI contributed by **Bipanshu Kashyap** (`bipanshu1001`).
+This directory contains the benchmarking, dataset adapters, DOFA VLM models, and the Jarvis God-Eye UI  (`bipanshu1001`).
 
 ---
 
