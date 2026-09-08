@@ -12,11 +12,15 @@ Orchestrates:
 import os
 import sys
 import time
+import sys
+import os
 import json
 from typing import Dict, List, Any, Optional
 import numpy as np
 import torch
 from torch.utils.data import DataLoader
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from metrics import evaluate_task_metrics
 from trace_schema import TraceLogger, ExecutionTrace

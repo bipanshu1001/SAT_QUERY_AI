@@ -19,7 +19,13 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from models.dofa_encoder import DOFAEncoder
+try:
+    from .dofa_encoder import DOFAEncoder
+except ImportError:
+    try:
+        from models.dofa_encoder import DOFAEncoder
+    except ImportError:
+        from bipanshu_work.models.dofa_encoder import DOFAEncoder
 
 
 # Simple vocabulary for decoding from logits (used in untrained inference)
