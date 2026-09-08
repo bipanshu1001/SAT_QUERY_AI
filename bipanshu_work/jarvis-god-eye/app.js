@@ -1,6 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
-   J.A.R.V.I.S GOD'S EYE — SPATIAL INTELLIGENCE CORE v2
-   Inspired by bilawalsidhu/gods-eye-view & Iron Man J.A.R.V.I.S HUD
+   ANTARIKSH ASTRA — SPATIAL INTELLIGENCE CORE v2
    Three.js · Satellite Telemetry · Web Audio · Live Intelligence
    ═══════════════════════════════════════════════════════════════ */
 
@@ -177,10 +176,12 @@ const WEATHER_CODES = {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // WEB AUDIO SCI-FI SOUND SYNTHESIZER
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-class JarvisAudio {
+class AstraAudio {
     constructor() {
         this.ctx = null;
     }
+}
+const JarvisAudio = AstraAudio;
 
     init() {
         if (!this.ctx) {
@@ -267,11 +268,11 @@ class JarvisAudio {
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// J.A.R.V.I.S GOD'S EYE PROTOCOL CLASS
+// ANTARIKSH ASTRA PROTOCOL CLASS
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-class JarvisGodEye {
+class AntarikshAstra {
     constructor() {
-        this.audio = new JarvisAudio();
+        this.audio = new AstraAudio();
 
         // Three.js
         this.scene = null;
@@ -415,10 +416,10 @@ class JarvisGodEye {
     // ── BOOT SEQUENCE (Cold Start) ───────────────────
     async bootSequence() {
         const messages = [
-            'INITIALIZING J.A.R.V.I.S SPATIAL MATRIX...',
+            'INITIALIZING ANTARIKSH ASTRA SPATIAL MATRIX...',
             'ACQUIRING NRO/NGA SATELLITE CONSTELLATION...',
             'ESTABLISHING ENCRYPTED SAT-LINK [TOP SECRET]...',
-            'CALIBRATING GOD\'S EYE SENSOR SUITE...',
+            'CALIBRATING ANTARIKSH ASTRA SENSOR SUITE...',
             'SYNCHRONIZING MGRS GEODETIC RECONNAISSANCE...',
             'DEPLOYING RECON OVERLAY & SCOPE VIGNETTE...',
             'ALL SYSTEMS OPERATIONAL ■ PROTOCOL ACTIVE',
@@ -436,7 +437,7 @@ class JarvisGodEye {
 
         await this.wait(400);
 
-        // Fade out boot screen, reveal God's Eye HUD
+        // Fade out boot screen, reveal Antariksh Astra HUD
         if (this.dom.boot_screen) {
             this.dom.boot_screen.classList.add('fade-out');
             setTimeout(() => {
@@ -450,7 +451,7 @@ class JarvisGodEye {
         if (this.dom.intel_hud) this.dom.intel_hud.classList.add('visible');
 
         this.audio.playLock();
-        this.typeIntelSummary('GOD\'S EYE PROTOCOL READY. SELECT SATELLITE OR SEARCH TARGET.');
+        this.typeIntelSummary('ANTARIKSH ASTRA PROTOCOL READY. SELECT SATELLITE OR SEARCH TARGET.');
 
         // Default target: Paris
         setTimeout(() => {
@@ -1440,8 +1441,8 @@ class JarvisGodEye {
             // Extract place from natural voice command
             const patterns = [
                 /(?:show me|find|search|locate|go to|fly to|scan|target)\s+(.+)/i,
-                /(?:jarvis|hey jarvis)[,\s]+(?:show me|find|search|locate|go to|scan)\s+(.+)/i,
-                /(?:jarvis|hey jarvis)[,\s]+(.+)/i,
+                /(?:antariksh|antarisksh|astra|jarvis|hey antariksh|hey astra|hey jarvis)[,\s]+(?:show me|find|search|locate|go to|scan)\s+(.+)/i,
+                /(?:antariksh|antarisksh|astra|jarvis|hey antariksh|hey astra|hey jarvis)[,\s]+(.+)/i,
             ];
 
             let query = transcript;
@@ -1489,14 +1490,14 @@ class JarvisGodEye {
     // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     loadFavorites() {
         try {
-            this.favorites = JSON.parse(localStorage.getItem('jarvis-god-eye-favorites') || '[]');
+            this.favorites = JSON.parse(localStorage.getItem('antariksh-astra-favorites') || localStorage.getItem('jarvis-god-eye-favorites') || '[]');
         } catch {
             this.favorites = [];
         }
     }
 
     saveFavorites() {
-        localStorage.setItem('jarvis-god-eye-favorites', JSON.stringify(this.favorites));
+        localStorage.setItem('antariksh-astra-favorites', JSON.stringify(this.favorites));
     }
 
     toggleFavorite(loc) {
@@ -1732,9 +1733,12 @@ class JarvisGodEye {
     }
 }
 
+const JarvisGodEye = AntarikshAstra;
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // LAUNCH APPLICATION
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 document.addEventListener('DOMContentLoaded', () => {
-    window.jarvisApp = new JarvisGodEye();
+    window.astraApp = new AntarikshAstra();
+    window.jarvisApp = window.astraApp;
 });

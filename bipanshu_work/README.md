@@ -1,6 +1,6 @@
 # Work Package (Sat-Query AI)
 
-This directory contains the benchmarking, dataset adapters, DOFA VLM models, and the Jarvis God-Eye UI  (`bipanshu1001`).
+This directory contains the benchmarking, dataset adapters, DOFA VLM models, and the Antariksh Astra UI  (`bipanshu1001`).
 
 ---
 
@@ -8,7 +8,7 @@ This directory contains the benchmarking, dataset adapters, DOFA VLM models, and
 
 ```
 bipanshu_work/
-├── jarvis-god-eye/          # Interactive Web UI for EO query and visualization
+├── jarvis-god-eye/          # Interactive Web UI for EO query and visualization (Antariksh Astra)
 │   ├── index.html
 │   ├── styles.css
 │   └── app.js
@@ -27,7 +27,7 @@ bipanshu_work/
 
 ---
 
-## 🚀 Running Jarvis God-Eye UI
+## 🚀 Running Antariksh Astra UI
 
 Simply open `jarvis-god-eye/index.html` in your browser, or serve it locally:
 

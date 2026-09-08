@@ -54,3 +54,7 @@ Thumbs.db
 # Logs
 *.log
 wandb/
+
+# Local Notes & Documentation
+PROJECT_WORKFLOW_GUIDE.md
+*CONVERSATION*.md
